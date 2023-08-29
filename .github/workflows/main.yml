@@ -12,4 +12,8 @@ jobs:
     steps:
       - name: "SSW CodeAuditor - Check broken links and performance"
         continue-on-error: true
-        run: "docker run sswconsulting/codeauditor --url htmlhint.com --debug"
+        run:
+          curl -L \
+            -X GET \
+            https://asia-east2-sswlinkauditor-c1131.cloudfunctions.net/api/comparescanlatestandsecond/3c34a549-dfb3-442c-b0e3-45942104a8bf/https%3A%2F%2Fwww.htmlhint.com%2F
+        # run: "docker run sswconsulting/codeauditor --token 3c34a549-dfb3-442c-b0e3-45942104a8bf --url htmlhint.com --private"
