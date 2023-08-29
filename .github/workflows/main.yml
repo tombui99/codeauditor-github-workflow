@@ -21,4 +21,17 @@ jobs:
 
       - name: read content
         run: echo ${{ steps.content.outputs.id }}
+
+      - name: If number of Code Warnings increases
+        if: steps.content.outputs.id.isHtmlWarningsUp
+        run: echo "Create issue for increased code warnings"
+      
+      - name: If number of Code Errors increases
+        if: steps.content.outputs.id.isHtmlErrorsUp
+        run: echo "Create issue for increased code errors"
+
+      - name: If number of Broken Links increases
+        if: steps.content.outputs.id.isBrokenLinksUp
+        run: echo "Create issue for increased broken links"
+        
         # run: "docker run sswconsulting/codeauditor --token 3c34a549-dfb3-442c-b0e3-45942104a8bf --url htmlhint.com --private"
