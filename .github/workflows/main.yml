@@ -24,14 +24,20 @@ jobs:
 
       - name: If number of Code Warnings increases
         if: "${{fromJson(steps.content.outputs.id).isHtmlWarningsUp}}"
-        run: echo "Create issue for increased code warnings"
+        run: |
+          echo "Create issue for increased code warnings"
+          gh issue create --title "Increased number of HTML Warnings detected!!!!"
       
       - name: If number of Code Errors increases
         if: "${{fromJson(steps.content.outputs.id).isHtmlErrorsUp}}"
-        run: echo "Create issue for increased code errors"
+        run: |
+          echo "Create issue for increased code errors"
+          gh issue create --title "Increased number of HTML Errors detected!!!!
 
       - name: If number of Broken Links increases
         if: "${{fromJson(steps.content.outputs.id).isBrokenLinksUp}}"
-        run: echo "Create issue for increased broken links"
+        run: |
+          echo "Create issue for increased broken links"
+          gh issue create --title "Increased number of Broken 404 Links detected!!!!
         
         # run: "docker run sswconsulting/codeauditor --token 3c34a549-dfb3-442c-b0e3-45942104a8bf --url htmlhint.com --private"
