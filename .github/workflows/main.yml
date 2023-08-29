@@ -10,6 +10,9 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
+      - name: "Initialize git"
+        run: git init
+        
       - name: "SSW CodeAuditor - Check broken links and performance"
         continue-on-error: true
         run: |
