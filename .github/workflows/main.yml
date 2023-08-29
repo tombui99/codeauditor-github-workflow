@@ -20,7 +20,7 @@ jobs:
         run: echo "::set-output name=id::$(cat content.json)"
 
       - name: read content
-        run: echo ${{ steps.content.outputs.id.isHtmlWarningsUp }}
+        run: echo "${{fromJson(steps.content.outputs.contentJson).isHtmlWarningsUp}}"
 
       - name: If number of Code Warnings increases
         if: "steps.content.outputs.id.isHtmlWarningsUp"
