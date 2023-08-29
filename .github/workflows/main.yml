@@ -28,7 +28,7 @@ jobs:
           GH_TOKEN: ${{secrets.GH_TOKEN}}
         run: |
           echo "Create issue for increased code warnings"
-          gh issue create --title "Increased number of HTML Warnings detected!!!!"
+          gh issue create --title "Increased number of HTML Warnings detected!!!!" -- body ""
       
       - name: If number of Code Errors increases
         if: "${{fromJson(steps.content.outputs.id).isHtmlErrorsUp}}"
@@ -36,7 +36,7 @@ jobs:
           GH_TOKEN: ${{secrets.GH_TOKEN}}
         run: |
           echo "Create issue for increased code errors"
-          gh issue create --title "Increased number of HTML Errors detected!!!!
+          gh issue create --title "Increased number of HTML Errors detected!!!!" -- body ""
 
       - name: If number of Broken Links increases
         if: "${{fromJson(steps.content.outputs.id).isBrokenLinksUp}}"
@@ -44,6 +44,6 @@ jobs:
           GH_TOKEN: ${{secrets.GH_TOKEN}}
         run: |
           echo "Create issue for increased broken links"
-          gh issue create --title "Increased number of Broken 404 Links detected!!!!
+          gh issue create --title "Increased number of Broken 404 Links detected!!!!" -- body ""
         
         # run: "docker run sswconsulting/codeauditor --token 3c34a549-dfb3-442c-b0e3-45942104a8bf --url htmlhint.com --private"
