@@ -24,18 +24,24 @@ jobs:
 
       - name: If number of Code Warnings increases
         if: "${{fromJson(steps.content.outputs.id).isHtmlWarningsUp}}"
+        env:
+          GH_TOKEN: ${{secrets.GH_TOKEN}}
         run: |
           echo "Create issue for increased code warnings"
           gh issue create --title "Increased number of HTML Warnings detected!!!!"
       
       - name: If number of Code Errors increases
         if: "${{fromJson(steps.content.outputs.id).isHtmlErrorsUp}}"
+        env:
+          GH_TOKEN: ${{secrets.GH_TOKEN}}
         run: |
           echo "Create issue for increased code errors"
           gh issue create --title "Increased number of HTML Errors detected!!!!
 
       - name: If number of Broken Links increases
         if: "${{fromJson(steps.content.outputs.id).isBrokenLinksUp}}"
+        env:
+          GH_TOKEN: ${{secrets.GH_TOKEN}}
         run: |
           echo "Create issue for increased broken links"
           gh issue create --title "Increased number of Broken 404 Links detected!!!!
