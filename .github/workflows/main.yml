@@ -21,7 +21,7 @@ jobs:
         run: echo "::set-output name=id::$(cat content.json)"
 
       - name: read content
-        run: echo "${{fromJson(steps.content.outputs.id)}}"
+        run: echo "${{fromJson(steps.content.outputs.id).prevHtmlWarnings}}"
 
       - name: If number of Code Warnings increases
         if: "${{fromJson(steps.content.outputs.id).isHtmlWarningsUp}}"
@@ -31,7 +31,7 @@ jobs:
           echo "Create issue for increased code warnings"
           gh issue create \ 
             --title "Increased number of HTML Warnings detected" \
-            --body "The number of HTML Warnings has gone up from ${{fromJson(steps.content.outputs.id).prevHtmlWarnings}} to ${{fromJson(steps.content.outputs.id).currHtmlWarnings}}"
+            --body `The number of HTML Warnings has gone up from ${{fromJson(steps.content.outputs.id).prevHtmlWarnings}} to ${{fromJson(steps.content.outputs.id).currHtmlWarnings}}`
       
       - name: If number of Code Errors increases
         if: "${{fromJson(steps.content.outputs.id).isHtmlErrorsUp}}"
