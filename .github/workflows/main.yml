@@ -26,7 +26,9 @@ jobs:
           GH_TOKEN: ${{secrets.GH_TOKEN}}
         run: |
           echo "Create issue for increased code warnings"
-          gh issue create --title "Increased number of HTML Warnings detected" --body `The number of HTML Warnings has gone up from ${{fromJson(steps.content.outputs.id).prevHtmlWarnings}} to ${{fromJson(steps.content.outputs.id).currHtmlWarnings}}`
+          gh issue \
+            create --title "Increased number of HTML Warnings detected" \
+            --body "The number of HTML Warnings has gone up from ${{fromJson(steps.content.outputs.id).prevHtmlWarnings}} to ${{fromJson(steps.content.outputs.id).currHtmlWarnings}}"
       
       - name: If number of Code Errors increases
         if: "${{fromJson(steps.content.outputs.id).isHtmlErrorsUp}}"
