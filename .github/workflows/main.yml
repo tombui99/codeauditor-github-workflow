@@ -16,22 +16,17 @@ jobs:
         run: |
           curl --request GET 'https://asia-east2-sswlinkauditor-c1131.cloudfunctions.net/api/comparescanlatestandsecond/3c34a549-dfb3-442c-b0e3-45942104a8bf/https%3A%2F%2Fwww.htmlhint.com%2F' -o content.json
       
-      - name: read api content
+      - name: output api content
         id: content
         run: echo "::set-output name=id::$(cat content.json)"
-
-      - name: read content
-        run: echo "${{fromJson(steps.content.outputs.id).prevHtmlWarnings}}"
-
+        
       - name: If number of Code Warnings increases
         if: "${{fromJson(steps.content.outputs.id).isHtmlWarningsUp}}"
         env:
           GH_TOKEN: ${{secrets.GH_TOKEN}}
         run: |
           echo "Create issue for increased code warnings"
-          gh issue create \ 
-            --title "Increased number of HTML Warnings detected" \
-            --body `The number of HTML Warnings has gone up from ${{fromJson(steps.content.outputs.id).prevHtmlWarnings}} to ${{fromJson(steps.content.outputs.id).currHtmlWarnings}}`
+          gh issue create --title "Increased number of HTML Warnings detected" --body `The number of HTML Warnings has gone up from ${{fromJson(steps.content.outputs.id).prevHtmlWarnings}} to ${{fromJson(steps.content.outputs.id).currHtmlWarnings}}`
       
       - name: If number of Code Errors increases
         if: "${{fromJson(steps.content.outputs.id).isHtmlErrorsUp}}"
