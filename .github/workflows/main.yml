@@ -28,7 +28,10 @@ jobs:
           echo "Create issue for increased code warnings"
           gh issue \
             create --title "Increased number of HTML Warnings detected" \
-            --body "The number of HTML Warnings has gone up from ${{fromJson(steps.content.outputs.id).prevHtmlWarnings}} to ${{fromJson(steps.content.outputs.id).currHtmlWarnings}}"
+            --body "## New HTML Warnings detected
+              ⚠️ The number of HTML Warnings has gone up from **${{fromJson(steps.content.outputs.id).prevHtmlWarnings}}** to **${{fromJson(steps.content.outputs.id).currHtmlWarnings}}**
+              See [Latest Scan Details ](https://codeauditor.com/build/e762f5e2-28fd-4f88-5721-734721f588a4)
+              - [ ] Please fix remaining HTML Warnings"
       
       - name: If number of Code Errors increases
         if: "${{fromJson(steps.content.outputs.id).isHtmlErrorsUp}}"
