@@ -31,7 +31,9 @@ jobs:
             --body "
             ## New HTML Warnings detected
             
-            ⚠️ The number of HTML Warnings has gone up by **$((5 - 1))** from **${{fromJson(steps.content.outputs.id).prevHtmlWarnings}}** to **${{fromJson(steps.content.outputs.id).currHtmlWarnings}}**
+            ⚠️ The number of HTML Warnings has gone up by **$(({{fromJson(steps.content.outputs.id).prevHtmlWarnings}} - {{fromJson(steps.content.outputs.id).currHtmlWarnings}}))** 
+            from **${{fromJson(steps.content.outputs.id).prevHtmlWarnings}}** to 
+            **${{fromJson(steps.content.outputs.id).currHtmlWarnings}}**
             
             See [Latest Scan Details ](https://codeauditor.com/build/${{fromJson(steps.content.outputs.id).latestRunId}})
               
