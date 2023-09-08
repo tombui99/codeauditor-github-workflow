@@ -31,9 +31,7 @@ jobs:
             --body "
             ## New HTML Warnings detected
             
-            ⚠️ The number of HTML Warnings has gone up by **$((${{fromJson(steps.content.outputs.id).currHtmlWarnings}} - ${{fromJson(steps.content.outputs.id).prevHtmlWarnings}}))** 
-            from **${{fromJson(steps.content.outputs.id).prevHtmlWarnings}}** to 
-            **${{fromJson(steps.content.outputs.id).currHtmlWarnings}}**
+            ⚠️ The number of HTML Warnings has gone up by **$((${{fromJson(steps.content.outputs.id).currHtmlWarnings}} - ${{fromJson(steps.content.outputs.id).prevHtmlWarnings}}))** from **${{fromJson(steps.content.outputs.id).prevHtmlWarnings}}** to **${{fromJson(steps.content.outputs.id).currHtmlWarnings}}**
             
             See [Latest Scan Details ](https://codeauditor.com/build/${{fromJson(steps.content.outputs.id).latestRunId}})
               
@@ -50,7 +48,7 @@ jobs:
             --body "
             ## New HTML Errors detected
             
-            ❌ The number of HTML Errors has gone up from **${{fromJson(steps.content.outputs.id).prevHtmlErrors}}** to **${{fromJson(steps.content.outputs.id).currHtmlErrors}}**
+            ❌ The number of HTML Errors has gone up by **$((${{fromJson(steps.content.outputs.id).currHtmlErrors}} - ${{fromJson(steps.content.outputs.id).prevHtmlErrors}}))** from **${{fromJson(steps.content.outputs.id).prevHtmlErrors}}** to **${{fromJson(steps.content.outputs.id).currHtmlErrors}}**
             
             See [Latest Scan Details ](https://codeauditor.com/build/${{fromJson(steps.content.outputs.id).latestRunId}})
               
@@ -67,7 +65,7 @@ jobs:
             --body "
             ## New Broken Links detected
             
-            ❗ The number of Broken Links has gone up from **${{fromJson(steps.content.outputs.id).prevBrokenLinks}}** to **${{fromJson(steps.content.outputs.id).currBrokenLinks}}**
+            ❗ The number of Broken Links has gone up by **$((${{fromJson(steps.content.outputs.id).currBrokenLinks}} - ${{fromJson(steps.content.outputs.id).prevBrokenLinks}}))** from **${{fromJson(steps.content.outputs.id).prevBrokenLinks}}** to **${{fromJson(steps.content.outputs.id).currBrokenLinks}}**
             
             See [Latest Scan Details ](https://codeauditor.com/build/${{fromJson(steps.content.outputs.id).latestRunId}})
               
