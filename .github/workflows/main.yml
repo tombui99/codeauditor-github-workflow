@@ -31,7 +31,7 @@ jobs:
             --body "
             ## New HTML Warnings detected
             
-            ⚠️ The number of HTML Warnings has gone up by **$((fromJson(steps.content.outputs.id).prevHtmlWarnings - fromJson(steps.content.outputs.id).currHtmlWarnings))** 
+            ⚠️ The number of HTML Warnings has gone up by **$((${{fromJson(steps.content.outputs.id).currHtmlWarnings}} - ${{fromJson(steps.content.outputs.id).prevHtmlWarnings}}))** 
             from **${{fromJson(steps.content.outputs.id).prevHtmlWarnings}}** to 
             **${{fromJson(steps.content.outputs.id).currHtmlWarnings}}**
             
