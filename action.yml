@@ -23,6 +23,7 @@ runs:
       run: |
         inputs=($INPUTS)
     - name: "SSW CodeAuditor - Check broken links and performance"
+      shell: bash
       continue-on-error: true
       run: |
         curl --request GET 'https://asia-east2-sswlinkauditor-c1131.cloudfunctions.net/api/comparescanlatestandsecond/${{inputs.token}}/${{inputs.url}}' -o content.json
