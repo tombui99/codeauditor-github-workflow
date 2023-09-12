@@ -1,0 +1,28 @@
+name: CI
+
+on:
+  workflow_dispatch:
+    inputs:
+      token:
+        description: 'Your CodeAuditor token'
+        required: true
+      url:
+        description: 'Your URL'
+        required: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Run a one-line script
+        run: echo Hello, world!
+      - name: CodeAuditor Feedback Loop Workflow
+        uses: tombui99/codeauditor-github-workflow@v1.0.0
+        with:
+          # Your CodeAuditor token
+          token: ${{github.event.inputs.token}}
+          # Your URL
+          url: ${{github.event.inputs.url}}
+          # Your GitHub Token
+          GitHub_Token: ${{secrets.GH_TOKEN}}
