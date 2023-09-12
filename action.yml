@@ -19,21 +19,18 @@ inputs:
 runs:
   steps:
     - name: Check input
-        shell: bash
-        run: |
-          echo "Checking if '$INPUT' is valid"
-          
-          inputs=($INPUTS)
-          
-          declare -A inputsMap
-          for i in ${inputs[@]}; do
-            inputsMap["$i"]=1
-          done
-          
-          if ! [[ ${inputsMap["$INPUT"]} ]] ; then
-            echo "$INPUT_NAME '$INPUT' don't exist in $INPUTS"
-            exit 1
-          fi
+      shell: bash
+      run: |
+        echo "Checking if '$INPUT' is valid"  
+        inputs=($INPUTS)
+        declare -A inputsMap
+        for i in ${inputs[@]}; do
+          inputsMap["$i"]=1
+        done
+        if ! [[ ${inputsMap["$INPUT"]} ]] ; then
+          echo "$INPUT_NAME '$INPUT' don't exist in $INPUTS"
+          exit 1
+        fi
     - name: "SSW CodeAuditor - Check broken links and performance"
       continue-on-error: true
       run: |
