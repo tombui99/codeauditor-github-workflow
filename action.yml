@@ -14,6 +14,9 @@ on:
       url:
         description: 'Your URL'
         required: true
+      GitHub_Token:
+        description: 'Your GitHub Token'
+        required: true
 
 jobs:
   build:
@@ -33,7 +36,7 @@ jobs:
       - name: If number of Code Warnings increases
         if: "${{fromJson(steps.content.outputs.id).isHtmlWarningsUp}}"
         env:
-          GH_TOKEN: ${{secrets.GH_TOKEN}}
+          GH_TOKEN: ${{github.event.inputs.GitHub_Token}}
         run: |
           echo "Create issue for increased code warnings"
           gh issue \
@@ -50,7 +53,7 @@ jobs:
       - name: If number of Code Errors increases
         if: "${{fromJson(steps.content.outputs.id).isHtmlErrorsUp}}"
         env:
-          GH_TOKEN: ${{secrets.GH_TOKEN}}
+          GH_TOKEN: ${{github.event.inputs.GitHub_Token}}
         run: |
           echo "Create issue for increased code errors"
           gh issue \
@@ -67,7 +70,7 @@ jobs:
       - name: If number of Broken Links increases
         if: "${{fromJson(steps.content.outputs.id).isBrokenLinksUp}}"
         env:
-          GH_TOKEN: ${{secrets.GH_TOKEN}}
+          GH_TOKEN: ${{github.event.inputs.GitHub_Token}}
         run: |
           echo "Create issue for increased broken links"
           gh issue \
