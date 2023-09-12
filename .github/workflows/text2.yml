@@ -29,6 +29,6 @@ jobs:
         id: content
         run: echo "::set-output name=id::$(cat content.json)"
       - name: read out
-        run: echo ${{fromJson(steps.content.outputs.id).isHtmlWarningsUp}}
+        run: echo ${{ steps.content.outputs.id }}
       
         
