@@ -20,11 +20,10 @@ jobs:
       - name: "SSW CodeAuditor - Check broken links and performance"
         run: |
             curl \
-                -X POST \
-                -H "Accept: application/vnd.github.v3+json" \
-                https://asia-east2-sswlinkauditor-c1131.cloudfunctions.net/api/comparescanlatestandsecond/${{inputs.token}} \
-                -d '{"url": "${{inputs.url}}"}' \
-                -o content.json  
+            -X POST 'https://asia-east2-sswlinkauditor-c1131.cloudfunctions.net/api/comparescanlatestandsecond/${{inputs.token}}' \
+            -H 'Content-Type: application/json' \
+            -d '{"url": "${{inputs.url}}"}' \
+            -o content.json 
       - name: output api content
         id: content
         run: echo "::set-output name=id::$(cat content.json)"
