@@ -17,6 +17,7 @@ inputs:
     required: true
 
 runs:
+  using: "composite"
   steps:
     - name: Get input
       shell: bash
