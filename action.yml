@@ -28,10 +28,12 @@ runs:
         curl --request GET 'https://asia-east2-sswlinkauditor-c1131.cloudfunctions.net/api/comparescanlatestandsecond/${{inputs.token}}/${{inputs.url}}' -o content.json
     
     - name: output api content
+      shell: bash
       id: content
       run: echo "::set-output name=id::$(cat content.json)"
       
     - name: If number of Code Warnings increases
+      shell: bash
       if: "${{fromJson(steps.content.outputs.id).isHtmlWarningsUp}}"
       env:
         GH_TOKEN: ${{inputs.GitHub_Token}}
@@ -49,6 +51,7 @@ runs:
           - [ ] Please fix remaining HTML Warnings"
     
     - name: If number of Code Errors increases
+      shell: bash
       if: "${{fromJson(steps.content.outputs.id).isHtmlErrorsUp}}"
       env:
         GH_TOKEN: ${{inputs.GitHub_Token}}
@@ -66,6 +69,7 @@ runs:
           - [ ] Please fix remaining HTML Errors"
 
     - name: If number of Broken Links increases
+      shell: bash
       if: "${{fromJson(steps.content.outputs.id).isBrokenLinksUp}}"
       env:
         GH_TOKEN: ${{inputs.GitHub_Token}}
