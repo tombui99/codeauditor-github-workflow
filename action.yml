@@ -31,10 +31,11 @@ runs:
     - name: "Check if new broken links/code errors/code warnings has come up"
       shell: bash
       run: |
-        curl -X POST 'https://asia-east2-sswlinkauditor-c1131.cloudfunctions.net/api/comparescanlatestandsecond/${{inputs.token}}' \
-        -H 'Content-Type: application/json' \
-        -d '{"url": ${{inputs.url}}}' \
-        -o content.json 
+        curl \
+            -X POST 'https://asia-east2-sswlinkauditor-c1131.cloudfunctions.net/api/comparescanlatestandsecond/${{inputs.token}}' \
+            -H 'Content-Type: application/json' \
+            -d '{"url": "${{inputs.url}}"}' \
+            -o content.json  
     - name: output api content
       shell: bash
       id: content
