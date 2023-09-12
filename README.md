@@ -12,7 +12,7 @@ This workflow action runs CodeAuditor scan on your website and creates new GitHu
 
 ## Example usage
 
-Check out [`test.yml`](./.github/workflows/test.yml) for an example workflow and their outputs.
+Check out [`test.yml`](./.github/workflows/test.yml) for an example workflow.
 
 Workflow:
 
