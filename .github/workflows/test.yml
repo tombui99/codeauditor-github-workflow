@@ -37,11 +37,13 @@ jobs:
         run: echo "::set-output name=id::$(cat summaries.json)"
       - name: Job Summaries
         run: |
-          echo "See [Latest Scan Details](https://codeauditor.com/build/${{fromJson(steps.summaries.outputs.id).summary[0].runId}})"
+          echo "See [Latest Scan Details](https://codeauditor.com/build/${{fromJson(steps.summaries.outputs.id).summary[0].runId}})" >> $GITHUB_STEP_SUMMARY
 
-          echo "|   **Url**   | ${{fromJson(steps.summaries.outputs.id).summary[0].url}} |" >> $GITHUB_STEP_SUMMARY
-          echo "|   **Timestamp**   | ${{fromJson(steps.summaries.outputs.id).summary[0].timestamp}} |" >> $GITHUB_STEP_SUMMARY
-          echo "|   **Total Links Scanned**   | ${{fromJson(steps.summaries.outputs.id).summary[0].totalScanned}} |" >> $GITHUB_STEP_SUMMARY
-          echo "|   **Broken Links**   | ${{fromJson(steps.summaries.outputs.id).summary[0].totalUnique404}} |" >> $GITHUB_STEP_SUMMARY
-          echo "|   **HTML Errors**   | ${{fromJson(steps.summaries.outputs.id).summary[0].htmlErrors}} |" >> $GITHUB_STEP_SUMMARY
-          echo "|   **HTML Warnings**   | ${{fromJson(steps.summaries.outputs.id).summary[0].htmlWarnings}} |" >> $GITHUB_STEP_SUMMARY
+          echo "|                             |                                                                     |" >> $GITHUB_STEP_SUMMARY
+          echo "| --------------------------- | ------------------------------------------------------------------- |" >> $GITHUB_STEP_SUMMARY
+          echo "|   **Url**                   | ${{fromJson(steps.summaries.outputs.id).summary[0].url}}            |" >> $GITHUB_STEP_SUMMARY
+          echo "|   **Timestamp**             | ${{fromJson(steps.summaries.outputs.id).summary[0].timestamp}}      |" >> $GITHUB_STEP_SUMMARY
+          echo "|   **Total Links Scanned**   | ${{fromJson(steps.summaries.outputs.id).summary[0].totalScanned}}   |" >> $GITHUB_STEP_SUMMARY
+          echo "|   **Broken Links**          | ${{fromJson(steps.summaries.outputs.id).summary[0].totalUnique404}} |" >> $GITHUB_STEP_SUMMARY
+          echo "|   **HTML Errors**           | ${{fromJson(steps.summaries.outputs.id).summary[0].htmlErrors}}     |" >> $GITHUB_STEP_SUMMARY
+          echo "|   **HTML Warnings**         | ${{fromJson(steps.summaries.outputs.id).summary[0].htmlWarnings}}   |" >> $GITHUB_STEP_SUMMARY
