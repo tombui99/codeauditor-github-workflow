@@ -41,6 +41,7 @@ jobs:
 
           echo "See [Scan Details](https://codeauditor.com/build/${{fromJson(steps.summaries.outputs.id).summary[0].runId}})" >> $GITHUB_STEP_SUMMARY
 
+          echo "|                             | Values                                                              |" >> $GITHUB_STEP_SUMMARY
           echo "| --------------------------- | ------------------------------------------------------------------- |" >> $GITHUB_STEP_SUMMARY
           echo "|   **Url**                   | ${{fromJson(steps.summaries.outputs.id).summary[0].url}}            |" >> $GITHUB_STEP_SUMMARY
           echo "|   **Timestamp**             | ${{fromJson(steps.summaries.outputs.id).summary[0].timestamp}}      |" >> $GITHUB_STEP_SUMMARY
