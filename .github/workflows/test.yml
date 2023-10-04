@@ -14,13 +14,35 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - name: CodeAuditor Feedback Loop Workflow
-        uses: tombui99/codeauditor-github-workflow@v1.0.0
-        with:
-          # Your CodeAuditor token
-          token: ${{github.event.inputs.token}}
-          # Your URL
-          url: ${{github.event.inputs.url}}
-          # Your GitHub Token
-          GitHub_Token: ${{secrets.GH_TOKEN}}
+      # - name: CodeAuditor Feedback Loop Workflow
+      #   uses: tombui99/codeauditor-github-workflow@v1.0.0
+      #   with:
+      #     # Your CodeAuditor token
+      #     token: ${{github.event.inputs.token}}
+      #     # Your URL
+      #     url: ${{github.event.inputs.url}}
+      #     # Your GitHub Token
+      #     GitHub_Token: ${{secrets.GH_TOKEN}}
+      - name: "Check latest scan summaries"
+        shell: bash
+        run: |
+          curl \
+              -X POST 'https://asia-east2-sswlinkauditor-c1131.cloudfunctions.net/api/latest/${{inputs.token}}' \
+              -H 'Content-Type: application/json' \
+              -d '{"url": "${{inputs.url}}"}' \
+              -o summaries.json  
+      - name: output summaries api
+        shell: bash
+        id: summaries
+        run: echo "::set-output name=id::$(cat summaries.json)"
+      - name: Job Summaries
+        run: |
+          scanSummary=${{fromJson(steps.summaries.outputs.id).summary}}
+          echo "See [Latest Scan Details](https://codeauditor.com/build/${scanSummary.runId})"
+
+          echo "|   **Url**   | ${scanSummary.url} |" >> $GITHUB_STEP_SUMMARY
+          echo "|   **Timestamp**   | ${scanSummary.timestamp} |" >> $GITHUB_STEP_SUMMARY
+          echo "|   **Total Links Scanned**   | ${scanSummary.totalScanned} |" >> $GITHUB_STEP_SUMMARY
+          echo "|   **Broken Links**   | ${scanSummary.totalUnique404} |" >> $GITHUB_STEP_SUMMARY
+          echo "|   **HTML Errors**   | ${scanSummary.htmlErrors} |" >> $GITHUB_STEP_SUMMARY
+          echo "|   **HTML Warnings**   | ${scanSummary.htmlWarnings} |" >> $GITHUB_STEP_SUMMARY
