@@ -113,6 +113,7 @@ runs:
       run: echo "::set-output name=id::$(cat summaries.json)"
 
     - name: Job Summaries
+      shell: bash
       run: |
         echo "### Scan Summaries 🚀" >> $GITHUB_STEP_SUMMARY
 
