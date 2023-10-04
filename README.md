@@ -57,16 +57,6 @@ Workflow:
 ```yml
 name: Test CodeAuditor Workflow
 
-on:
-  workflow_dispatch:
-    inputs:
-      token:
-        description: 'Your CodeAuditor token'
-        required: true
-      url:
-        description: 'Your URL'
-        required: true
-
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -75,9 +65,9 @@ jobs:
         uses: tombui99/codeauditor-github-workflow@v1.0.0
         with:
           # Your CodeAuditor token
-          token: ${{github.event.inputs.token}}
-          # Your URL
-          url: ${{github.event.inputs.url}}
+          token: ${{ vars.CODEAUDITORTOKEN }}
+          # Your Scan URL
+          url: ${{ vars.SCANURL }}
           # Your GitHub Token
           GitHub_Token: ${{secrets.GH_TOKEN}}
 ```
