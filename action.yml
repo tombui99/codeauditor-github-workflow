@@ -42,7 +42,7 @@ runs:
     - name: output api content
       shell: bash
       id: content
-      run: echo "::set-output name=id::$(cat content.json)"
+      run: echo "name=id::$(cat content.json)" >> $GITHUB_OUTPUT
       
     - name: If number of Code Warnings increases
       shell: bash
@@ -110,7 +110,7 @@ runs:
     - name: output summaries api
       shell: bash
       id: summaries
-      run: echo "::set-output name=id::$(cat summaries.json)"
+      run: echo "name=id::$(cat summaries.json)" >> $GITHUB_OUTPUT
 
     - name: Job Summaries
       shell: bash
