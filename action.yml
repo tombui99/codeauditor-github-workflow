@@ -41,7 +41,6 @@ runs:
       id: content
       # run: echo "name=id::$(cat content.json)" >> $GITHUB_OUTPUT
       run: echo "::set-output name=id::$(cat content.json)"
-      
     - name: If number of Code Warnings increases
       shell: bash
       if: "${{fromJson(steps.content.outputs.id).isHtmlWarningsUp}}"
@@ -59,7 +58,6 @@ runs:
           See [Latest Scan Details ](https://codeauditor.com/build/${{fromJson(steps.content.outputs.id).latestRunId}})
             
           - [ ] Please fix remaining HTML Warnings"
-    
     - name: If number of Code Errors increases
       shell: bash
       if: "${{fromJson(steps.content.outputs.id).isHtmlErrorsUp}}"
@@ -77,7 +75,6 @@ runs:
           See [Latest Scan Details ](https://codeauditor.com/build/${{fromJson(steps.content.outputs.id).latestRunId}})
             
           - [ ] Please fix remaining HTML Errors"
-
     - name: If number of Broken Links increases
       shell: bash
       if: "${{fromJson(steps.content.outputs.id).isBrokenLinksUp}}"
@@ -95,7 +92,6 @@ runs:
           See [Latest Scan Details ](https://codeauditor.com/build/${{fromJson(steps.content.outputs.id).latestRunId}})
             
           - [ ] Please fix remaining Broken Links"
-
     - name: "Check latest scan summaries"
       shell: bash
       run: |
@@ -104,13 +100,10 @@ runs:
             -H 'Content-Type: application/json' \
             -d '{"url": "${{inputs.url}}"}' \
             -o summaries.json  
-
     - name: output summaries api
       shell: bash
       id: summaries
-      # run: echo "name=id::$(cat summaries.json)" >> $GITHUB_OUTPUT
       run: echo "::set-output name=id::$(cat summaries.json)"
-
     - name: Job Summaries
       shell: bash
       run: |
