@@ -12,9 +12,9 @@ jobs:
         shell: bash
         run: |
           curl \
-              -X POST 'https://asia-east2-sswlinkauditor-c1131.cloudfunctions.net/api/comparescanlatestandsecond/${{inputs.token}}' \
+              -X POST 'https://asia-east2-sswlinkauditor-c1131.cloudfunctions.net/api/comparescanlatestandsecond/3c34a549-dfb3-442c-b0e3-45942104a8bf' \
               -H 'Content-Type: application/json' \
-              -d '{"url": "${{inputs.url}}"}' \
+              -d '{"url": "https://www.htmlhint.com/"}' \
               -o content.json  
       - name: output api content
         shell: bash
