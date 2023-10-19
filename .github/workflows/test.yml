@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: CodeAuditor Feedback Loop Workflow
-        uses: tombui99/codeauditor-github-workflow@v1.0.0
+        uses: tombui99/codeauditor-github-workflow@1.0.0
         with:
           # Your CodeAuditor token
           token: ${{ vars.CODEAUDITORTOKEN }}
