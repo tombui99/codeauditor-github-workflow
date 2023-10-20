@@ -25,17 +25,17 @@ jobs:
         run: |
           echo "### Scan Summaries 🚀" >> $GITHUB_STEP_SUMMARY
     
-          if [ ${{fromJson(steps.content.outputs.contentOut).isHtmlWarningsUp}} ]
+          if ${{fromJson(steps.content.outputs.contentOut).isHtmlWarningsUp}}
           then
             echo "WARNING" >> $GITHUB_STEP_SUMMARY
           fi
   
-          if [ ${{fromJson(steps.content.outputs.contentOut).isHtmlErrorsUp}} ]
+          if ${{fromJson(steps.content.outputs.contentOut).isHtmlErrorsUp}}
           then
             echo "ERROR" >> $GITHUB_STEP_SUMMARY
           fi
   
-          if [ ${{fromJson(steps.content.outputs.contentOut).isBrokenLinksUp}} ]
+          if ${{fromJson(steps.content.outputs.contentOut).isBrokenLinksUp}}
           then
             echo "BROKEN LINK" >> $GITHUB_STEP_SUMMARY
           fi
