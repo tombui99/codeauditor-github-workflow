@@ -24,9 +24,7 @@ jobs:
         shell: bash
         run: |
           echo "### Scan Summaries 🚀" >> $GITHUB_STEP_SUMMARY
-  
-          echo "See [All Scan Details](https://codeauditor.com/build/${{fromJson(steps.summaries.outputs.summariesOut).summary[0].runId}})" >> $GITHUB_STEP_SUMMARY
-  
+    
           if [ ${{fromJson(steps.content.outputs.contentOut).isHtmlWarningsUp}} ]
           then
             echo "WARNING" >> $GITHUB_STEP_SUMMARY
