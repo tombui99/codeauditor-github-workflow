@@ -1,0 +1,13 @@
+name: Test CodeAuditor Scan
+
+# Schedule Scan for SSW People at 1pm every Wednesday
+on: 
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 'SSW CodeAuditor - Check broken links and performance'
+        run: 'docker run sswconsulting/codeauditor --url https://www.ssw.com.au/rules/ --debug'
