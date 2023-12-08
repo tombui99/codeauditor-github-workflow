@@ -8,12 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: CodeAuditor Workflow
-        uses: SSWConsulting/codeauditor-scan-site@1.0.0
+      - name: Tom - Test workflow
+        uses: tombui99/codeauditor-github-workflow@1.0.0
         with:
-          # Your Scan URL
-          url: ${{ vars.SCANURL }}
-          # Your CodeAuditor token
-          token: ${{ secrets.CODEAUDITORTOKEN }}
-          # Your GitHub Token
           GitHub_Token: ${{ github.token }}
