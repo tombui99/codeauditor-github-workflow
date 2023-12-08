@@ -8,34 +8,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: "Check if new broken links/code errors/code warnings has come up"
-        shell: bash
-        run: |
-          curl \
-              -X POST 'https://asia-east2-sswlinkauditor-c1131.cloudfunctions.net/api/comparescanlatestandsecond/3c34a549-dfb3-442c-b0e3-45942104a8bf' \
-              -H 'Content-Type: application/json' \
-              -d '{"url": "https://www.htmlhint.com/"}' \
-              -o content.json  
-      - name: output api content
-        shell: bash
-        id: content
-        run: echo "contentOut=$(cat content.json)" >> $GITHUB_OUTPUT
-      - name: Job Summaries
-        shell: bash
-        run: |
-          echo "### Scan Summaries 🚀" >> $GITHUB_STEP_SUMMARY
-    
-          if ${{fromJson(steps.content.outputs.contentOut).isHtmlWarningsUp}}
-          then
-            echo "WARNING" >> $GITHUB_STEP_SUMMARY
-          fi
-  
-          if ${{fromJson(steps.content.outputs.contentOut).isHtmlErrorsUp}}
-          then
-            echo "ERROR" >> $GITHUB_STEP_SUMMARY
-          fi
-  
-          if ${{fromJson(steps.content.outputs.contentOut).isBrokenLinksUp}}
-          then
-            echo "BROKEN LINK" >> $GITHUB_STEP_SUMMARY
-          fi
+      - name: CodeAuditor Workflow
+        uses: SSWConsulting/codeauditor-scan-site@1.0.0
+        with:
+          # Your Scan URL
+          url: ${{ vars.SCANURL }}
+          # Your CodeAuditor token
+          token: ${{ secrets.CODEAUDITORTOKEN }}
+          # Your GitHub Token
+          GitHub_Token: ${{ github.token }}
