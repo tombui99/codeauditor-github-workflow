@@ -1,4 +1,4 @@
-name: Test CodeAuditor Workflow 2
+name: Test CodeAuditor Workflow
 
 on:
   workflow_dispatch:
@@ -6,9 +6,16 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    permissions: 
+      issues: write
     steps:
       - uses: actions/checkout@v3
-      - name: Tom - Test workflow
-        uses: tombui99/codeauditor-github-workflow@1.0.0
+      - name: CodeAuditor Workflow
+        uses: SSWConsulting/codeauditor-scan-site@1.0.0
         with:
+          # Your CodeAuditor token
+          token: 3c34a549-dfb3-442c-b0e3-45942104a8bf
+          # Your Scan URL
+          url: https://www.htmlhint.com/
+          # Your GitHub Token
           GitHub_Token: ${{ github.token }}
