@@ -1,4 +1,4 @@
-name: Test CodeAuditor Workflow
+name: Test
 
 on:
   workflow_dispatch:
@@ -7,13 +7,9 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - name: CodeAuditor Workflow
-        uses: SSWConsulting/codeauditor-scan-site@1.0.0
-        with:
-          # Your Scan URL
-          url: ${{ vars.SCANURL }}
-          # Your CodeAuditor token
-          token: ${{ secrets.CODEAUDITORTOKEN }}
-          # Your GitHub Token
-          GitHub_Token: ${{ github.token }}
+      - name: Manually fail the workflow
+        continue-on-error: true
+        run: exit 1
+      - name: "Send issue report if scan fails"
+        if: ${{ github.event.workflow_run.conclusion == 'failure' }}
+        run: echo "Current time: $(date +'%Y-%m-%d %H:%M:%S')"
