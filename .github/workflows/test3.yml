@@ -11,5 +11,5 @@ jobs:
         continue-on-error: true
         run: exit 1
       - name: "Send issue report if scan fails"
-        if: ${{ github.event.workflow_run.conclusion == 'failure' }}
+        if: ${{ failure() }}
         run: echo ${{ github.event.repository.updated_at}} | sed 's/:/./g'
