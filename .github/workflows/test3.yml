@@ -13,4 +13,4 @@ jobs:
         if: ${{ failure() }}
         run: | 
           echo "Current date and time: $(date +"%Y-%m-%d %H:%M:%S")"
-          echo ${{ github.event.repository.updated_at }}'
+          echo "Current date and time: ${{ github.event.repository.updated_at }}"
