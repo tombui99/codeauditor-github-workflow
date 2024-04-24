@@ -8,8 +8,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Manually fail the workflow
-        continue-on-error: true
         run: exit 1
-      - name: "Send issue report if scan fails"
+      - name: Check exit code
         if: ${{ failure() }}
-        run: echo ${{ github.event.repository.updated_at}} | sed 's/:/./g'
+        run: | 
+          echo "Error occurred with exit code ${{ job.status }}"
+          echo ${{ github.event.repository.updated_at}} | sed 's/:/./g'
