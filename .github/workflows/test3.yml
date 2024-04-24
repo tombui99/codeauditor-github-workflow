@@ -12,5 +12,4 @@ jobs:
       - name: Check exit code
         if: ${{ failure() }}
         run: | 
-          echo "Current date and time: $(date +"%Y-%m-%d %H:%M:%S")"
-          echo "Current date and time: ${{ github.event.repository.updated_at }}"
+          echo "Current date and time: $(date +"%H:%M:%S %d-%m-%Y")"
