@@ -12,5 +12,5 @@ jobs:
       - name: Check exit code
         if: ${{ failure() }}
         run: | 
-          echo "Error occurred with exit code ${{ job.status }}"
-          echo ${{ github.event.repository.updated_at}} | sed 's/:/./g'
+          echo "Current date and time: $(date +"%Y-%m-%d %H:%M:%S")"
+          echo ${{ github.event.repository.updated_at }}'
