@@ -13,5 +13,7 @@ jobs:
       - name: Check exit code
         if: ${{ failure() }}
         run: |
-          echo "${{ job.status }}"
-          echo "${{ github.run_id }}"
+          curl \
+            -X POST 'https://asia-east2-sswlinkauditor-c1131.cloudfunctions.net/api/createReportIssue' \
+            -H 'Content-Type: application/json' \
+            -d '{"url": "https://sample.com.au", "dateReported": "${{$(date +"%H:%M:%S %d-%m-%Y")}}", "workflowId": "${{ github.run_id }}", "jobStatus": "${{ job.status }}"}' \
