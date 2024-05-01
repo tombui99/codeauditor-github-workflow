@@ -9,10 +9,10 @@ jobs:
     steps:
       - name: Manually fail the workflow
         run: |
-          echo "Error occurred in step 4" > step4.log # Write error message to a file
+          docker run sswconsulting/codeauditor --url htmlhint.com > docker_step.log
           exit 1
       - name: Check exit code
         if: ${{ failure() }}
         run: |
-          cat step4.log # Print contents of the log file
+          cat docker_step.log
           
