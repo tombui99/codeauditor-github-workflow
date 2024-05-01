@@ -8,9 +8,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Manually fail the workflow
-        run: exit 1
+        run: |
+          echo "Error occurred in step 4" > step4.log # Write error message to a file
+          exit 1
       - name: Check exit code
         if: ${{ failure() }}
         run: |
-          cat ${{ github.workspace }}/step4.log
+          cat step4.log # Print contents of the log file
           
