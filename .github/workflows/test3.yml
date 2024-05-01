@@ -11,5 +11,5 @@ jobs:
         run: exit 1
       - name: Check exit code
         if: ${{ failure() }}
-        run: | 
-          echo "Current date and time: $(date +"%H:%M:%S %d-%m-%Y")"
+        run: echo "An error occurred: ${{ job.status }}"
+          
