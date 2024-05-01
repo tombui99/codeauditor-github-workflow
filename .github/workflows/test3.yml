@@ -11,5 +11,6 @@ jobs:
         run: exit 1
       - name: Check exit code
         if: ${{ failure() }}
-        run: echo "An error occurred: ${{ job.status }}"
+        run: |
+          echo "An error occurred: ${{ job.status }}"
           
