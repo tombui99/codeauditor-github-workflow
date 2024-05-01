@@ -13,7 +13,7 @@ jobs:
       - name: Check exit code
         if: ${{ failure() }}
         run: |
-          echo "${{$(date +"%H:%M:%S %d-%m-%Y")}}"
+          echo "$(date + '%H:%M:%S %d-%m-%Y')"
           curl \
             -X POST 'https://asia-east2-sswlinkauditor-c1131.cloudfunctions.net/api/createReportIssue' \
             -H 'Content-Type: application/json' \
