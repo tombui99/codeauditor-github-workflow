@@ -8,13 +8,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Manually fail the workflow
-        id: docker_run
         run: |
-          echo "Error occurred in step 4" > step4_error.log
           exit 1
       - name: Check exit code
         if: ${{ failure() }}
         run: |
           echo "${{ job.status }}"
-          echo "An error occurred in step 4:"
-          cat step4_error.log
+          echo "${{ github.run_id }})"
