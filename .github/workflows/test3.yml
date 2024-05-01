@@ -17,4 +17,4 @@ jobs:
           curl \
             -X POST 'https://asia-east2-sswlinkauditor-c1131.cloudfunctions.net/api/createReportIssue' \
             -H 'Content-Type: application/json' \
-            -d "{\"url\": \"https://sample.com.au\", \"dateReported\": \"$DATE\", \"workflowId\": \"${{ github.run_id }}\", \"jobStatus\": \"${{ job.status }}\"}"  
+            -d "{\"url\": \"https://sample.com.au\", \"dateReported\": \"$(date +"%Y-%m-%d %H:%M:%S")\", \"workflowId\": \"${{ github.run_id }}\", \"jobStatus\": \"${{ job.status }}\"}"  
