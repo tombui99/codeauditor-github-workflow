@@ -8,11 +8,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Manually fail the workflow
+        id: docker_run
         run: |
-          docker run sswconsulting/codeauditor --url htmlhint.com > docker_step.log
+          echo "::set-output name=docker_output::$(docker run sswconsulting/codeauditor --url htmlhint.com)"
           exit 1
       - name: Check exit code
         if: ${{ failure() }}
         run: |
-          cat docker_step.log
-          
+          echo "${{ steps.docker_run.outputs.docker_output }}"
