@@ -11,6 +11,7 @@ jobs:
         id: docker_run
         run: |
           echo "::set-output name=docker_output::$(docker run sswconsulting/codeauditor --url htmlhint.com)"
+          continue-on-error: true
           exit 1
       - name: Check exit code
         if: ${{ failure() }}
