@@ -14,4 +14,4 @@ jobs:
         if: ${{ failure() }}
         run: |
           echo "${{ job.status }}"
-          echo "${{ github.run_id }})"
+          echo "${{ github.run_id }}"
