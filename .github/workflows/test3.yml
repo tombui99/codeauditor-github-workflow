@@ -10,10 +10,11 @@ jobs:
       - name: Manually fail the workflow
         id: docker_run
         run: |
-          echo "::set-output name=docker_output::$(docker run sswconsulting/codeauditor --url htmlhint.com)"
-          continue-on-error: true
+          echo "Error occurred in step 4" > step4_error.log
           exit 1
       - name: Check exit code
         if: ${{ failure() }}
         run: |
-          echo "${{ steps.docker_run.outputs.docker_output }}"
+          echo "${{ job.status }}"
+          echo "An error occurred in step 4:"
+          cat step4_error.log
