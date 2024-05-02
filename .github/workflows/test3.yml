@@ -14,4 +14,4 @@ jobs:
         if: ${{ failure() }}
         run: |
           echo "$(date +"%Y-%m-%d %H:%M:%S")"
-          echo ${{ github }}
+          echo "${{ github }}" | jq -c .
