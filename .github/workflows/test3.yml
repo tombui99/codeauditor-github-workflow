@@ -20,4 +20,4 @@ jobs:
             -d "{\"url\": \"sample.com.au", \"dateReported\": \"$(date +"%Y-%m-%d %H:%M:%S")\", 
             \"repository\": \"${{ github.repository }}\", \"triggeringActor\": \"${{ github.triggering_actor }}\", \
             \"repository_owner\": \"${{ github.repository_owner }}\", \"CodeAuditorToken\": \"abcxyz", \
-            \"workflowURL\": \"https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}\", \
+            \"workflowURL\": \"https:\\github.com\${{ github.repository }}\actions\runs\${{ github.run_id }}\", \
