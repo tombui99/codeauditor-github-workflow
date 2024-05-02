@@ -14,10 +14,11 @@ jobs:
         if: ${{ failure() }}
         run: |
           echo "$(date +"%Y-%m-%d %H:%M:%S")"
+          echo "\"https:\\github.com\${{ github.repository }}\actions\runs\${{ github.run_id }}\""
           curl \
             -X POST 'https://asia-east2-sswlinkauditor-c1131.cloudfunctions.net/api/createReportIssue' \
             -H 'Content-Type: application/json' \
             -d "{\"url\": \"sample.com.au", \"dateReported\": \"$(date +"%Y-%m-%d %H:%M:%S")\", 
             \"repository\": \"${{ github.repository }}\", \"triggeringActor\": \"${{ github.triggering_actor }}\", \
             \"repository_owner\": \"${{ github.repository_owner }}\", \"CodeAuditorToken\": \"abcxyz", \
-            \"workflowURL\": \"https:\\github.com\${{ github.repository }}\actions\runs\${{ github.run_id }}\", \
+            \"workflowURL\": \"sample", \
